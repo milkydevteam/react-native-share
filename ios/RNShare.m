@@ -49,6 +49,7 @@
 #import "EmailShare.h"
 #import "RNShareActivityItemSource.h"
 #import "Utils.h"
+#import "ZaloShare.h"
 
 @implementation RNShare
 
@@ -111,6 +112,7 @@ RCT_EXPORT_MODULE()
     @"INSTAGRAM": @"instagram",
     @"INSTAGRAM_STORIES": @"instagramstories",
     @"EMAIL": @"email",
+    @"ZALO": @"zalo",
 
     @"SHARE_BACKGROUND_IMAGE": @"shareBackgroundImage",
     @"SHARE_BACKGROUND_VIDEO": @"shareBackgroundVideo",
@@ -166,6 +168,11 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
             [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
         } else if([social isEqualToString:@"email"]) {
             NSLog(@"TRY OPEN email");
+            [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
+        }
+         else if([social isEqualToString:@"zalo"]) {
+            NSLog(@"TRY OPEN zalo");
+            ZaloShare *shareCtl = [[ZaloShare alloc] init];
             [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
         }
     } else {
